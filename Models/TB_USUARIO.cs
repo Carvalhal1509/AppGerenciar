@@ -1,8 +1,10 @@
 ﻿using DesafioSenaiCimatec.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DesafioSenaiCimatec.Models
 {
+    
     public class TB_USUARIO
     {
         [Key]

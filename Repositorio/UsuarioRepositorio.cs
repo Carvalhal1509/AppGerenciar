@@ -14,26 +14,26 @@ namespace DesafioSenaiCimatec.Repositorio
 
         public TB_USUARIO BuscarPorLogin(string email)
         {
-            return bancoContext1.Usuarios.FirstOrDefault(x => x.DS_EMAIL.ToUpper() == email);
+            return bancoContext1.TB_USUARIO.FirstOrDefault(x => x.DS_EMAIL.ToUpper() == email);
         }
         public TB_USUARIO ListarPorId(int id)
         {
-            return bancoContext1.Usuarios.FirstOrDefault(x => x.ID_USUARIO == id);
+            return bancoContext1.TB_USUARIO.FirstOrDefault(x => x.ID_USUARIO == id);
         }
         public List<TB_USUARIO> BuscarTodos()
         {
-            return bancoContext1.Usuarios.Where(x => !x.StatusExc).ToList();
+            return bancoContext1.TB_USUARIO.Where(x => !x.StatusExc).ToList();
         }
 
         public List<TB_USUARIO> ListarTodos()
         {
-            return bancoContext1.Usuarios.ToList();
+            return bancoContext1.TB_USUARIO.ToList();
         }
 
 
         public TB_USUARIO Adicionar(TB_USUARIO contato)
         {
-            bancoContext1.Usuarios.Add(contato);
+            bancoContext1.TB_USUARIO.Add(contato);
             bancoContext1.SaveChanges();
             return contato;
         }
@@ -49,7 +49,7 @@ namespace DesafioSenaiCimatec.Repositorio
             contatoDb.NR_CPF_PES = contato.NR_CPF_PES;
             contatoDb.TP_USUARIO = contato.TP_USUARIO;
 
-            bancoContext1.Usuarios.Update(contatoDb);
+            bancoContext1.TB_USUARIO.Update(contatoDb);
             bancoContext1.SaveChanges();
             return contatoDb;
         }
@@ -62,7 +62,7 @@ namespace DesafioSenaiCimatec.Repositorio
             contatoDb.StatusExc = true;
 
 
-            bancoContext1.Usuarios.Update(contatoDb);
+            bancoContext1.TB_USUARIO.Update(contatoDb);
             bancoContext1.SaveChanges();
 
             return true;
@@ -71,12 +71,12 @@ namespace DesafioSenaiCimatec.Repositorio
 
         public TB_USUARIO BuscarPorEmailAlterarSenha(string email, string novaSenha)
         {
-            var query = bancoContext1.Usuarios.FirstOrDefault(x => x.DS_EMAIL.ToUpper() == email.ToUpper());
+            var query = bancoContext1.TB_USUARIO.FirstOrDefault(x => x.DS_EMAIL.ToUpper() == email.ToUpper());
             if (query != null)
             {
                 query.DS_SENHA = novaSenha;
 
-                bancoContext1.Usuarios.Update(query);
+                bancoContext1.TB_USUARIO.Update(query);
                 bancoContext1.SaveChanges();
             }
 
@@ -91,7 +91,7 @@ namespace DesafioSenaiCimatec.Repositorio
             contatoDb.StatusExc = false;
 
 
-            bancoContext1.Usuarios.Update(contatoDb);
+            bancoContext1.TB_USUARIO.Update(contatoDb);
             bancoContext1.SaveChanges();
 
             return true;

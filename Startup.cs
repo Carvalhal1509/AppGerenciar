@@ -18,6 +18,7 @@ namespace DesafioSenaiCimatec
         public void ConfigureServices(IServiceCollection services)
         {
 
+
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<BancoContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -35,8 +36,12 @@ namespace DesafioSenaiCimatec
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
+
+ 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

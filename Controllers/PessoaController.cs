@@ -92,8 +92,8 @@ namespace DesafioSenaiCimatec.Controllers
         public IActionResult Alterar(TB_USUARIO contato)
         {
 
-            var query = _context.Usuarios.Where(x => x.ID_USUARIO == contato.ID_USUARIO).FirstOrDefault();
-            var buscaPorEmail = _context.Usuarios.Where(x => x.DS_EMAIL == contato.DS_EMAIL).FirstOrDefault();
+            var query = _context.TB_USUARIO.Where(x => x.ID_USUARIO == contato.ID_USUARIO).FirstOrDefault();
+            var buscaPorEmail = _context.TB_USUARIO.Where(x => x.DS_EMAIL == contato.DS_EMAIL).FirstOrDefault();
 
             try
             {

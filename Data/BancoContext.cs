@@ -13,14 +13,14 @@ namespace DesafioSenaiCimatec.Data
         {
         }
 
-        public DbSet<TB_USUARIO> Usuarios { get; set; }
+        public DbSet<TB_USUARIO> TB_USUARIO { get; set; }
 
         public DbSet<SugestaoModel> Sugestao { get; set; }
 
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TB_USUARIO>().ToTable("TB_USUARIO", "dbo");
             base.OnModelCreating(modelBuilder);
         }
 

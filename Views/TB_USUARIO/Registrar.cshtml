@@ -95,7 +95,7 @@
                                     </div>
                                     <br/>
                                     <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
-                                        <input class="input100" type="text" id="cpf" name="cpf" maxlength="12" placeholder="Cpf:">
+                                        <input class="input100" type="number" id="cpf" name="cpf" maxlength="12" placeholder="Cpf:">
                                         <span class="focus-input100"></span>
                                         @Html.ValidationMessageFor(x => x.NR_CPF_PES)
 
@@ -125,10 +125,9 @@
 </body>
 </html>
 
-
 <script type="text/javascript">
 
-    $('#telefone').on('keypress', maskNumber);
+    
 
     function maskNumber(evt) {
         evt = (evt) ? evt : window.event;
@@ -139,41 +138,38 @@
         return true;
     }
 
-    function SalvarUsuario()
-    {
-    $('#msgError #erroMsg').html();
-    $('#item_form #msgError').hide();
-    $.ajax({
-        type: 'POST',
-        data: {
-            'Usuario.Senha': $('#senha').val(),
-            'informacaoSenha2': $('#confirmarSenha').val(),
-            'Usuario.Email': $('#email').val(),
-            'informacaoEmail2': $('#confirmarEmail').val(),
-            'Usuario.Celular': $('#telefone').val(),
-            'Usuario.Nome': $('#nome').val(),
-            'Usuario.Aniversario': $('#data').val(),
-            'Usuario.Setor': $('#setor').val(),
-        },
-        url: '@Url.Action("SalvarUsuario", "Usuario")',
-        success: function (result)
-        {
-            $('.overlay').hide();
-            $('#msgSucess #sucessMsg').html('Cadastro efetuado com sucesso!!!');
-            $('#sucessModal').show();
-            $('#senha').val('');
-            $('#confirmarSenha').val('');
-            $('#email').val('');
-            $('#confirmarEmail').val('');
-            $('#nome').val('');
-            $('#data').val('');
-        },
-        error: function (error)
-        {
-            $('#msgError #erroMsg').html(error.responseJSON.message);
-            $('#errorModal').show();
-        },
-    });
+    function SalvarUsuario() {
+        $('#msgError #erroMsg').html();
+        $('#item_form #msgError').hide();
+        $.ajax({
+            type: 'POST',
+            data: {
+                'DS_SENHA': $('#senha').val(),
+                'informacaoSenha2': $('#confirmarSenha').val(),
+                'DS_EMAIL': $('#email').val(),
+                'informacaoEmail2': $('#confirmarEmail').val(),
+                'NR_CPF_PES': $('#cpf').val(),
+                'NM_PESSOA': $('#nome').val(),
+                'DT_NAS_PESSOA': $('#data').val(),
+            },
+            url: '@Url.Action("SalvarUsuario", "TB_USUARIO")',
+            success: function (result) {
+                $('.overlay').hide();
+                $('#msgSucess #sucessMsg').html('Cadastro efetuado com sucesso!!!');
+                $('#sucessModal').show();
+                $('#senha').val('');
+                $('#confirmarSenha').val('');
+                $('#email').val('');
+                $('#confirmarEmail').val('');
+                $('#cpf').val('');
+                $('#nome').val('');
+                $('#data').val('');
+            },
+            error: function (error) {
+                $('#msgError #erroMsg').html(error.responseJSON.message);
+                $('#errorModal').show();
+            },
+        });
     }
 
     function fechar_alerta() {
