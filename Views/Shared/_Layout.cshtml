@@ -35,7 +35,7 @@
             </li>
 
             <li>
-                @if (@ViewBag.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador )
+                @if (@ViewBag.TB_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador )
                 {
                     <div class="iocn-link">
                         <a href="#">
@@ -83,7 +83,7 @@
             <i class='bx bx-menu close'></i>
             <div class="dropdown">
                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <b><span>Olá, @ViewBag.Nome </span></b>
+                    <b><span>Olá, @ViewBag.NM_PESSOA </span></b>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" onclick="modalPerfil()" href="#">Perfil</a>
@@ -108,7 +108,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title" style=" text-align: center;">Sugestões</h4>
                     </div>
-
+                    8
                     <div class="col-sm-12 mt-1">
                         <div id="errorModal-sugestao" style="display: none">
                             <div id="msgError-sugestao" class="alert alert-danger">
@@ -239,7 +239,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                @ViewBag.Nome
+                                @ViewBag.NM_PESSOA
                             </div>
                         </div>
                         <div class="Titulo-informacao-usuario">
@@ -247,7 +247,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                @ViewBag.Email
+                                @ViewBag.DS_EMAIL
                             </div>
                         </div>
                         <div class="Titulo-informacao-usuario">
@@ -255,15 +255,15 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                @ViewBag.Perfil
+                                @ViewBag.TP_USUARIO
                             </div>
                         </div>
                         <div class="Titulo-informacao-usuario">
-                            Celular:
+                            Cpf:
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                @ViewBag.Celular
+                                @ViewBag.NR_CPF_PES
                             </div>
                         </div>
                         <div class="Titulo-informacao-usuario">
@@ -271,7 +271,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                @ViewBag.Aniversario
+                                @ViewBag.DT_NAS_PESSOA
                             </div>
                         </div>
                     </div>

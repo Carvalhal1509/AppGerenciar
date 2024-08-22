@@ -24,7 +24,13 @@ namespace DesafioSenaiCimatec.Filters
                 {
                     context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
                 }
+                if (contato.TP_USUARIO != Enums.TP_USUARIO.Administrador && contato.TP_USUARIO != Enums.TP_USUARIO.Usuariocadastro && contato.TP_USUARIO != Enums.TP_USUARIO.Usuarioconsulta)
+                {
+                    context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Index" } });
+                }
+
             }
+
             base.OnActionExecuted(context);
         }
     }

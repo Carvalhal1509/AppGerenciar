@@ -44,10 +44,9 @@
                 <th scope="col" style="display:none">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">E-mail</th>
-                <th scope="col">Celular</th>
+                <th scope="col">Cpf</th>
                 <th scope="col">Aniversário</th>
                 <th scope="col">Perfil</th>
-                <th scope="col">Setor</th>
                 <th scope="col">Ação</th>
             </tr>
         </thead>
@@ -62,7 +61,7 @@
                         <td>@contato.DS_EMAIL</td>
                         <td>@contato.NR_CPF_PES</td>
                         <td>@contato.DT_NAS_PESSOA.ToString("dd/MM/yyyy")</td>
-                        <td>@(contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador ? "Admininistrador" : contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuariocadastro ? "Admin. Aniversariantes" : contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuarioconsulta ? "Usuario" : "Padrão")</td>
+                        <td>@(contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador ? "Admininistrador" : contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuariocadastro ? "Usuariocadastro" : "Usuarioconsulta")</td>
                         
 
                         <td>
@@ -110,7 +109,7 @@
 <script type="text/javascript">
 
     function modalApagar(Id) {
-        $('#bottonExcluir').attr('href', `@Url.Action("Apagar", "Contato")?id=${Id}`);
+        $('#bottonExcluir').attr('href', `@Url.Action("Apagar", "Pessoa")?id=${Id}`);
         $('#modal-apagar').modal('show');
     }
 
