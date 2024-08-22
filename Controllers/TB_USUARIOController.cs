@@ -57,7 +57,7 @@ namespace DesafioSenaiCimatec.Controllers
                 //    return BadRequest(new Response<string>("", "Email já cadastrado!", false));
                 //}
 
-                Usuario.Perfil = Enums.TP_USUARIO.Usuariocadastro;
+                Usuario.TP_USUARIO = Enums.TP_USUARIO.Usuariocadastro;
                 _context.Usuarios.Add(Usuario);
                 _context.SaveChanges();
 

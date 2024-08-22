@@ -47,7 +47,7 @@ namespace DesafioSenaiCimatec.Repositorio
             contatoDb.DS_EMAIL = contato.DS_EMAIL;
             contatoDb.DT_NAS_PESSOA = contato.DT_NAS_PESSOA;
             contatoDb.NR_CPF_PES = contato.NR_CPF_PES;
-            contatoDb.Perfil = contato.Perfil;
+            contatoDb.TP_USUARIO = contato.TP_USUARIO;
 
             bancoContext1.Usuarios.Update(contatoDb);
             bancoContext1.SaveChanges();

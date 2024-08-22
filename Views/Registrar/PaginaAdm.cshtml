@@ -62,7 +62,7 @@
                         <td>@contato.DS_EMAIL</td>
                         <td>@contato.NR_CPF_PES</td>
                         <td>@contato.DT_NAS_PESSOA.ToString("dd/MM/yyyy")</td>
-                        <td>@(contato.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador ? "Admininistrador" : contato.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuariocadastro ? "Admin. Aniversariantes" : contato.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuarioconsulta ? "Usuario" : "Padrão")</td>
+                        <td>@(contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador ? "Admininistrador" : contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuariocadastro ? "Admin. Aniversariantes" : contato.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuarioconsulta ? "Usuario" : "Padrão")</td>
                         
 
                         <td>

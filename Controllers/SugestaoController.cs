@@ -23,7 +23,7 @@ namespace DesafioSenaiCimatec.Controllers
             var usuario = _sessao.BuscarSessaoDoUsuario();
 
             @ViewBag.NM_PESSOA = usuario.NM_PESSOA;
-            @ViewBag.Perfil = usuario.Perfil;
+            @ViewBag.TP_USUARIO = usuario.TP_USUARIO;
             @ViewBag.DS_EMAIL = usuario.DS_EMAIL;
             @ViewBag.NR_CPF_PES = usuario.NR_CPF_PES;
             @ViewBag.DT_NAS_PESSOA = usuario.DT_NAS_PESSOA.ToString("dd/MM/yyyy");

@@ -19,12 +19,12 @@ namespace DesafioSenaiCimatec.Models
         public string DS_EMAIL { get; set; }
 
         [Required(ErrorMessage = "Digite o Cpf")]
-        public int NR_CPF_PES { get; set; }
+        public string NR_CPF_PES { get; set; }
 
         public DateTime DT_NAS_PESSOA { get; set; }
 
         [Required(ErrorMessage = "Selecione o Perfil")]
-        public TP_USUARIO Perfil { get; set; }
+        public TP_USUARIO TP_USUARIO { get; set; }
 
         public bool StatusExc { get; set; }
 
