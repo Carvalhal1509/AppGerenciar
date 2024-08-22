@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model TB_USUARIO
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
 }
+<style>
+    body {
+        background-image: url('/Image/tokyo2.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: transparent;
+    }
+</style>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="h-100">
+    <section class="background-image-home h-100">
+
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container align-content-end ">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-md-9 col-lg-7 col-xl-6">
+                        <div class="card-home">
+                            <div class="text-center">
+
+                                <h1 class="display-4">Bem vindo!</h1>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

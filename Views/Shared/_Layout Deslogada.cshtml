@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Desafio - Senai CIMATEC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Estilo para aplicar a imagem de fundo */
+        body {
+            background-image: url('https://image.cdn2.seaart.ai/2024-06-12/cpker3de878c73fhvk7g/fc289a9d071ccc53c925023bb6ecca167895900f_high.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Mantém o fundo fixo ao rolar a página */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

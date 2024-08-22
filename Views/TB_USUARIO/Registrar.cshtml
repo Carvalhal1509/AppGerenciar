@@ -1,0 +1,184 @@
+﻿@using DesafioSenaiCimatec.Enums;
+@model TB_USUARIO
+@{
+    ViewData["Title"] = "Registrar Usuário";
+    Layout = "_LayoutDefault";
+}
+
+<html lang="pt-br">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+
+    <meta name="robots" content="noindex, follow">
+    <script nonce="7916c204-387b-4def-821d-7eeb400be49a">(function (w, d) { !function (a, e, t, r) { a.zarazData = a.zarazData || {}; a.zarazData.executed = []; a.zaraz = { deferred: [], listeners: [] }; a.zaraz.q = []; a.zaraz._f = function (e) { return function () { var t = Array.prototype.slice.call(arguments); a.zaraz.q.push({ m: e, a: t }) } }; for (const e of ["track", "set", "debug"]) a.zaraz[e] = a.zaraz._f(e); a.zaraz.init = () => { var t = e.getElementsByTagName(r)[0], z = e.createElement(r), n = e.getElementsByTagName("title")[0]; n && (a.zarazData.t = e.getElementsByTagName("title")[0].text); a.zarazData.x = Math.random(); a.zarazData.w = a.screen.width; a.zarazData.h = a.screen.height; a.zarazData.j = a.innerHeight; a.zarazData.e = a.innerWidth; a.zarazData.l = a.location.href; a.zarazData.r = e.referrer; a.zarazData.k = a.screen.colorDepth; a.zarazData.n = e.characterSet; a.zarazData.o = (new Date).getTimezoneOffset(); a.zarazData.q = []; for (; a.zaraz.q.length;) { const e = a.zaraz.q.shift(); a.zarazData.q.push(e) } z.defer = !0; for (const e of [localStorage, sessionStorage]) Object.keys(e || {}).filter((a => a.startsWith("_zaraz_"))).forEach((t => { try { a.zarazData["z_" + t.slice(7)] = JSON.parse(e.getItem(t)) } catch { a.zarazData["z_" + t.slice(7)] = e.getItem(t) } })); z.referrerPolicy = "origin"; z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a.zarazData))); t.parentNode.insertBefore(z, t) };["complete", "interactive"].includes(e.readyState) ? zaraz.init() : a.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
+</head>
+<body style="background-color: #b5adad;">
+
+    <section class="vh-100 background-image-registrar">
+
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card-registro col-xl-12">
+                            <div class="card-body col-xl-12 text-center">
+                                <span id="titulo" class="login100-form-title">
+                                    Registro
+                                </span>
+                                <div class="col-sm-12">
+                                    <div id="errorModal" style="display: none">
+                                        <div id="msgError" class="alert alert-danger">
+                                            <i class="fa fa-ban"></i>
+                                            <button class="close" onclick="fechar_alerta();" aria-hidden="true" type="button">×</button>
+
+                                            <span id="erroMsg"></span>
+                                        </div>
+                                    </div>
+                                    <div id="sucessModal" style="display: none">
+                                        <div id="msgSucess" class="alert alert-success">
+                                            <i class="fa fa-ban"></i>
+                                            <button class="close" onclick="fechar_alerta();" aria-hidden="true" type="button">×</button>
+
+                                            <span id="sucessMsg"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12">
+                                        <div class="wrap-input100 validate-input" data-validate="Name is required">
+                                            <input class="input100" type="text" id="nome" name="nome" placeholder="Nome">
+                                            <span class="focus-input100"></span>
+                                            @Html.ValidationMessageFor(x => x.NM_PESSOA)
+                                        </div>
+                                        
+                                </div>
+
+                                <div class="row-registro col-xl-12"> 
+
+                                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                        <input class="input100" type="email" required id="email" name="email" placeholder="Email:">
+                                        <span class="focus-input100"></span>
+                                        @Html.ValidationMessageFor(x => x.DS_EMAIL)
+                                    </div>
+
+                                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                                        <input class="input100" type="email" required id="confirmarEmail" name="confirmarEmail" placeholder="Confirmar Email:">
+                                        <span class="focus-input100"></span>
+                                        @Html.ValidationMessageFor(x => x.DS_EMAIL)
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row-registro col-xl-12">
+                                    <div class="wrap-input100 validate-input" data-validate="Senha">
+                                        <input class="input100" type="password" id="senha" name="senha" placeholder="Senha:">
+                                        <span class="focus-input100"></span>
+                                        @Html.ValidationMessageFor(x => x.DS_SENHA)
+                                    </div>
+                                    <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
+                                        <input class="input100" type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirmar Senha:">
+                                        <span class="focus-input100"></span>
+                                        @Html.ValidationMessageFor(x => x.DS_SENHA)
+                                    </div>
+                                </div>
+                               
+                                <div class="row-registro col-xl-12">
+
+                                    <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
+                                        <input class="input100" type="date" max="2999-12-31" id="data" name="data" placeholder="Data de nascimento:">
+                                        <span class="focus-input100"></span>
+                                    </div>
+                                    <br/>
+                                    <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
+                                        <input class="input100" type="text" id="cpf" name="cpf" maxlength="12" placeholder="Cpf:">
+                                        <span class="focus-input100"></span>
+                                        @Html.ValidationMessageFor(x => x.NR_CPF_PES)
+
+                                    </div>
+
+                                </div>
+                               
+                                <div class="container-login100-form-btn">
+                                    <div class="wrap-login100-form-btn ">
+                                        <div class="login100-form-bgbtn "></div>
+                                        <button onclick="SalvarUsuario()" class="login100-form-btn">
+                                            Registrar
+                                        </button>
+                                    </div>
+                                    <a asp-controller="Login" asp-action="Index" role="button" class="dis-block txt3 hov1 p-r-30 p-l-30">
+                                        Voltar
+                                        <i class="fa fa-long-arrow-right m-l-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    $('#telefone').on('keypress', maskNumber);
+
+    function maskNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if ((charCode > 31 && charCode < 48) || charCode > 57) {
+            return false;
+        }
+        return true;
+    }
+
+    function SalvarUsuario()
+    {
+    $('#msgError #erroMsg').html();
+    $('#item_form #msgError').hide();
+    $.ajax({
+        type: 'POST',
+        data: {
+            'Usuario.Senha': $('#senha').val(),
+            'informacaoSenha2': $('#confirmarSenha').val(),
+            'Usuario.Email': $('#email').val(),
+            'informacaoEmail2': $('#confirmarEmail').val(),
+            'Usuario.Celular': $('#telefone').val(),
+            'Usuario.Nome': $('#nome').val(),
+            'Usuario.Aniversario': $('#data').val(),
+            'Usuario.Setor': $('#setor').val(),
+        },
+        url: '@Url.Action("SalvarUsuario", "Usuario")',
+        success: function (result)
+        {
+            $('.overlay').hide();
+            $('#msgSucess #sucessMsg').html('Cadastro efetuado com sucesso!!!');
+            $('#sucessModal').show();
+            $('#senha').val('');
+            $('#confirmarSenha').val('');
+            $('#email').val('');
+            $('#confirmarEmail').val('');
+            $('#nome').val('');
+            $('#data').val('');
+        },
+        error: function (error)
+        {
+            $('#msgError #erroMsg').html(error.responseJSON.message);
+            $('#errorModal').show();
+        },
+    });
+    }
+
+    function fechar_alerta() {
+        $('#errorModal').hide();
+        $('#sucessModal').hide();
+    }
+
+</script>

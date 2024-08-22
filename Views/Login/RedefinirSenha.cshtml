@@ -1,0 +1,62 @@
+﻿@model RedefinirSenhaModel
+@{
+    Layout = "_Layout Deslogada";
+    ViewData["Title"] = "Login";
+
+}
+
+
+<form asp-controller="Login" asp-action="Entrar" method="post">
+    <section class="background-tecnology">
+
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+
+                        <div class="card">
+                            <div class="card-body-login p-5">
+                                <div>
+                                    @if (TempData["MensagemSucesso"] != null)
+                                    {
+                                        <div class="alert alert-success" role="alert">
+                                            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                                            @TempData["MensagemSucesso"]
+                                        </div>
+                                    }
+
+                                    @if (TempData["MensagemErro"] != null)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                                            @TempData["MensagemErro"]
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="text-RedefinirSenha">Email</label>
+                                    <input type="text" asp-for="DS_EMAIL" class="form-control form-control-lg" id="email" />
+                                    @Html.ValidationMessageFor(x => x.DS_EMAIL)
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <button type="submit" class="btn btn-warning btn-lg ms-2" style="width:100%">Redefinir Senha</button>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="registrar-login">
+                                            <a type="submit" class="text-register" role="button" asp-controller="Login" asp-action="Index">Voltar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+                               

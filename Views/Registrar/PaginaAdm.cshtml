@@ -1,0 +1,121 @@
+﻿@model List<TB_USUARIO>
+@{
+    ViewData["Title"] = "Listagem de Usuários";
+}
+
+
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <a class="btn btn-warning ms-2 ml-2 mt-2" role="button" asp-controller="Registrar" asp-action="Criar">Adicionar Usuario</a>
+    <a class="btn btn-light ml-2 mt-2" role="button" asp-controller="Home" asp-action="Index">Voltar</a>
+</div>
+<br />
+
+<div class="container col-sm-10">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="btn btn-danger btn-close btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="btn btn-danger btn-close btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+</div>
+
+<div class="text-center">
+    <img style="" src="~/Image/perfil.gif" width="150px" class="" alt="">
+</div>
+
+
+<div class="text-center container">
+    <h2>Lista de usuários ativos</h2>
+    <br />
+
+    <table class="table table-bordered table-striped" id="table-usuarios">
+        <thead>
+            <tr>
+                <th scope="col" style="display:none">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Aniversário</th>
+                <th scope="col">Perfil</th>
+                <th scope="col">Setor</th>
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (TB_USUARIO contato in Model)
+                {
+                    <tr>
+                        <th scope="row" style="display:none">@contato.ID_USUARIO</th>
+                        <td>@contato.NM_PESSOA</td>
+                        <td>@contato.DS_EMAIL</td>
+                        <td>@contato.NR_CPF_PES</td>
+                        <td>@contato.DT_NAS_PESSOA.ToString("dd/MM/yyyy")</td>
+                        <td>@(contato.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador ? "Admininistrador" : contato.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuariocadastro ? "Admin. Aniversariantes" : contato.Perfil == DesafioSenaiCimatec.Enums.TP_USUARIO.Usuarioconsulta ? "Usuario" : "Padrão")</td>
+                        
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-light" asp-route-id="@contato.ID_USUARIO" asp-controller="Contato" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger" onclick="modalApagar(@contato.ID_USUARIO)">Apagar</a>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<div id="modalapagar">
+    <div class="modal fade" id="modal-apagar" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmar Exclusão</h4>
+                </div>
+                <div class="modal-body" style="padding-bottom: 0px; text-align: center; font-size: 18px;">
+                    <div class="row">
+                        Tem certeza que deseja apagar o usuário?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a id="bottonExcluir" role="button" class="btn btn-danger">Excluir</a>
+                    <button type="button" class="btn btn-light" title="fecharApagar" id="fecharApagar" onclick="modalFecharApagar()">Não</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    function modalApagar(Id) {
+        $('#bottonExcluir').attr('href', `@Url.Action("Apagar", "Contato")?id=${Id}`);
+        $('#modal-apagar').modal('show');
+    }
+
+    function modalFecharApagar() {
+        $('#modal-apagar').modal('hide');
+    }
+
+</script>

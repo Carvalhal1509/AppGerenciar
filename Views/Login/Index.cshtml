@@ -1,0 +1,70 @@
+﻿@model LoginModel
+@{
+    Layout = "_Layout Deslogada";
+    ViewData["Title"] = "Login";
+
+}
+
+
+<form asp-controller="Login" asp-action="Entrar" method="post">
+    <section class="background-tecnology">
+
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+
+                        <div class="card">
+                            <div class="card-body-login p-5">
+                                <div>
+                                    @if (TempData["MensagemSucesso"] != null)
+                                    {
+                                        <div class="alert alert-success" role="alert">
+                                            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                                            @TempData["MensagemSucesso"]
+                                        </div>
+                                    }
+
+                                    @if (TempData["MensagemErro"] != null)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                                            @TempData["MensagemErro"]
+                                        </div>
+                                    }
+                                </div>
+                                <div class="col-xl-12" id="titulo-login">
+                                    <h2>
+                                        LOGIN
+                                    </h2>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-outline mb-4">
+                                        <input placeholder="Email" type="text" asp-for="DS_EMAIL" class="form-control form-control-lg input100" id="email" />
+                                        @Html.ValidationMessageFor(x => x.DS_EMAIL)
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input placeholder="Senha" type="password" asp-for="DS_SENHA" class="form-control form-control-lg input100" id="senha" />
+                                        @Html.ValidationMessageFor(x => x.DS_SENHA)
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <button type="submit" class="btn btn-warning btn-lg ms-2" style="width:100%">Login</button>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="registrar-login">
+                                                <a class="text-register" role="button" asp-controller="TB_USUARIO" asp-action="Registrar">Registrar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="text-register-RedefinirSenha text-center" asp-action="RedefinirSenha" asp-controller="Login">Esqueceu sua senha?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
