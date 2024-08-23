@@ -14,11 +14,15 @@ namespace DesafioSenaiCimatec.Helper
         {
             try
             {
-                string host = _configuration.GetValue<string>("SMTP:Host");
-                string nome = _configuration.GetValue<string>("SMTP:Nome");
-                string username = _configuration.GetValue<string>("SMTP:Username");
-                string senha = _configuration.GetValue<string>("SMTP:Senha");
-                int porta = _configuration.GetValue<int>("SMTP:Porta");
+                // Obtém as configurações do appsettings.json
+                string host = _configuration.GetValue<string>("EmailSettings:SmtpServer");
+                string nome = _configuration.GetValue<string>("EmailSettings:SenderName");
+                string username = _configuration.GetValue<string>("EmailSettings:SenderEmail");
+                string senha = _configuration.GetValue<string>("EmailSettings:Password");
+                int porta = _configuration.GetValue<int>("EmailSettings:SmtpPort");
+                bool usarSsl = _configuration.GetValue<bool>("EmailSettings:UseSsl");
+
+                // Configura a mensagem de e-mail
                 MailMessage mail = new MailMessage()
                 {
                     From = new MailAddress(username, nome)
@@ -28,18 +32,37 @@ namespace DesafioSenaiCimatec.Helper
                 mail.Body = mensagem;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
-                SmtpClient smtp = new SmtpClient(host, porta);
-                smtp.Credentials = new NetworkCredential(username, senha);
-                smtp.EnableSsl = false;
+
+                // Configura o cliente SMTP
+                SmtpClient smtp = new SmtpClient(host, porta)
+                {
+                    Credentials = new NetworkCredential(username, senha),
+                    EnableSsl = usarSsl
+                };
+
+                // Envia o e-mail
                 smtp.Send(mail);
                 return true;
-
             }
             catch (System.Exception e)
             {
-                //gravar log de erro ao enviar e-mail.
+                // Log do erro
+                Console.WriteLine($"Erro ao enviar email: {e.Message}");
                 return false;
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
