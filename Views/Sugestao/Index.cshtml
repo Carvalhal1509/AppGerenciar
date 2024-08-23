@@ -1,0 +1,62 @@
+﻿@model List<SugestaoModel>
+@{
+    ViewData["Title"] = "Listagem de Sugestões";
+}
+
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <a class="btn btn-light ml-2 mt-2" role="button" asp-controller="Home" asp-action="Index">Voltar</a>
+</div>
+<br />
+
+<div class="container col-sm-10">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="btn btn-danger btn-close btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="btn btn-danger btn-close btn-sm close-alert" data-bs-dismiss="alert" arial-label="Close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+</div>
+
+<div class="text-center">
+    <img style="" src="~/Image/chuvisco.gif" width="150px" class="" alt="">
+</div>
+
+<div class="text-center container mt-2">
+    <h2>Lista de Sugestões</h2>
+    <br />
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Usuário</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Data da Sugestão</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (SugestaoModel sugestao in Model)
+                {
+                    <tr>
+                        <th scope="row">@sugestao.UsuarioSugestao</th>
+                        <td>@sugestao.Descricao</td>
+                        <td>@sugestao.DataSugestao.ToString("dd/MM/yyyy")</td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
