@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "Lista de Usuários Inativos";
+}
+
+<link rel="stylesheet" href="~/css/usuariosInativos.css" />
+
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-light mt-2 ml-2">Voltar</a>
+
+<div class="text-center">
+    <img style="" src="~/Image/bloqueado.gif" width="150px" class="" alt="">
+</div>
+
+<section class="container mt-2">
+    <div class="col-x-12">
+        <div class="box">
+            <div class="box-header">
+                <h2 class="box-title">Lista de usuários inativos</h2>
+            </div><!-- /.box-header -->
+            <div class="box-body col-x-12">
+
+                <div id="list_header">
+                    <div id="msgError" class="alert alert-danger alert-dismissable" style="display: none;">
+                        <i class="fa fa-ban"></i>
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <b>Erro</b>
+                        <span id="erroMsg"></span>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="form-group col-sm-6">
+                        <label>Email:</label>
+                        <input type="text" placeholder="EX: email@email.com" id="pesquisaEmail" name="pesquisaEmail" class="form-control input-value">
+                    </div>
+                    <div class="form-group col-sm-6" style="margin-top: 31px">
+                        <button type="button" id="btnExameListar" onclick="listar();" class="btn btn-primary">Pesquisar</button>
+                    </div>
+                </div>
+
+                <table id="list_items" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Cpf</th>
+                            <th>Data Aniversário</th>
+                            <th>Perfil</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Cpf</th>
+                            <th>Data Aniversário</th>
+                            <th>Perfil</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</section><!-- /.content -->
+
+<div id="modalReativar" style="text-align:center">
+    <div class="modal fade" id="modal-reativar" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmação de Reativação</h4>
+
+                </div>
+                <div class="modal-body" style="padding-bottom: 0px; text-align: center; font-size: 18px;">
+                    <div class="row">
+                        Tem certeza que deseja reativar o usuário?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-confirmar-reativar" class="btn btn-success pull-right">Reativar</button>
+                    <button type="button" class="btn btn-secondary pull-left" onclick="fecharModal();">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn-confirmar-reativar').on('click', reativar);
+
+        listar();
+    });
+
+    function listar() {
+        $('#list_items').dataTable({
+            'bPaginate': true,
+            'bJQueryUI': true,
+            'bProcessing': true,
+            'bServerSide': true,
+            "searching": true,
+            'bDestroy': true,
+            'sAjaxSource': `@Url.Action("UsuariosInativosPagination", "Registrar")?email=${$('#pesquisaEmail').val()}`,
+            'sServerMethod': 'POST',
+            'aoColumns': [
+                { 'mData': 'ide_usuario' },
+                { 'mData': 'nome' },
+                { 'mData': 'email' },
+                { 'mData': 'cpf' },
+                { 'mData': 'dtc_nascimento' },
+                { 'mData': 'perfil' },
+                { 'mData': 'reativar' }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json"
+            }
+        });
+    }
+
+    function modalReativar(ide_usuario) {
+        $('#modal-reativar').modal('show');
+        $('#btn-confirmar-reativar').attr('id-target', ide_usuario);
+    }
+
+    function reativar() {
+        let ide_usuario = $('#btn-confirmar-reativar').attr('id-target');
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                'ide_usuario': ide_usuario,
+            },
+            url: '@Url.Action("ReativarUsuario", "Registrar")',
+            success: function (result) {
+                if (result.is_action) {
+                    $('#msgSucess #sucessMsg').html('Reativação efetuada com sucesso!!!');
+                    $('#modal-reativar').modal('hide');
+                    listar();
+                }
+                else {
+                    $('#msgError #erroMsg').html(result.error);
+                }
+            },
+            error: function (error) {
+                $('#msgError #erroMsg').html(result.error);
+            },
+            datatype: 'json'
+        });
+    }
+
+    function fecharModal() {
+        $('#modal-reativar').modal('hide');
+    }
+</script>
