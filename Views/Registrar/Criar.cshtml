@@ -34,20 +34,20 @@
         <input type="hidden" asp-for="ID_USUARIO" />
 
         <div class="form-group col-sm-6">
-            <label>Nome Completo*</label>
+            <label>Nome Completo</label>
             <input type="text" asp-for="NM_PESSOA" class="form-control" placeholder="Ex: Jose da Silva Santos">
             @Html.ValidationMessageFor(x => x.NM_PESSOA)
         </div>
 
         <div class="form-group col-sm-6">
-            <label>Email*</label>
+            <label>Email</label>
             <input type="email" asp-for="DS_EMAIL" class="form-control" placeholder="Ex: jose@email.com.br">
             @Html.ValidationMessageFor(x => x.DS_EMAIL)
         </div>
 
         <div class="form-group col-sm-6">
-            <label>Celular*</label>
-            <input type="text" asp-for="NR_CPF_PES" class="form-control" maxlength="12" placeholder="Ex: 00000000000">
+            <label>Cpf</label>
+            <input type="number" asp-for="NR_CPF_PES" class="form-control" maxlength="12" placeholder="Ex: 00000000000">
             @Html.ValidationMessageFor(x => x.NR_CPF_PES)
         </div>
 

@@ -1,0 +1,81 @@
+﻿@using DesafioSenaiCimatec.Enums;
+@model TB_USUARIO
+@{
+    ViewData["TITLE"] = "editar usuario";
+}
+
+<div class="text-center mt-3">
+    <h3>Editar usuário</h3>
+
+</div>
+<div id="overlay" class="overlay container">
+    <div>
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["MensagemErro"]
+            </div>
+        }
+    </div>
+    <form class="row" asp-controller="Contato" asp-action="Alterar" method="post">
+        <input type="hidden" asp-for="ID_USUARIO" />
+
+        <div class="form-group col-sm-6">
+            <label>Nome*</label>
+            <input type="text" asp-for="NM_PESSOA" class="form-control">
+            @Html.ValidationMessageFor(x => x.NM_PESSOA)
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label>Email*</label>
+            <input type="text" asp-for="DS_EMAIL" class="form-control">
+            @Html.ValidationMessageFor(x => x.DS_EMAIL)
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label>Celular*</label>
+            <input type="text" asp-for="Celular" class="form-control">
+            @Html.ValidationMessageFor(x => x.Celular)
+        </div>
+
+        <div class="form-group col-sm-6">
+            <label>Aniversário*</label>
+            <input type="date" asp-for="Aniversario" class="form-control">
+        </div>
+
+        <div class="form-group col-sm-6">
+            @if (Model.Perfil != PerfilEnum.Dev)
+            {
+                <label for="nome" class="form-label">Perfil*</label>
+                <select asp-for="Perfil" class="form-control">
+
+                    @if (@ViewBag.Perfil == app_cadastro.Enums.PerfilEnum.Dev)
+                    {
+                        <option value="@PerfilEnum.Dev">Desenvolvedor</option>
+                    }
+                    <option value="@PerfilEnum.Padrao">Padrão</option>
+                    <option value="@PerfilEnum.AdminAniversariantes">Administrador Aniversariantes</option>
+                    <option value="@PerfilEnum.AdminCafe">Administrador Vaquinha Café</option>
+
+                </select>
+                @Html.ValidationMessageFor(x => x.Perfil)
+            }
+        </div>
+
+
+        <div class="btn-group col-sm-2" role="group">
+            <a class="btn btn-light" role="button" asp-controller="Registrar" asp-action="PaginaAdm">Voltar</a>
+            <button type="submit" class="btn btn-warning ms-2">Continuar</button>
+        </div>
+    </form>
+</div>
+
