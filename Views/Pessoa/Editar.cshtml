@@ -26,48 +26,47 @@
             </div>
         }
     </div>
-    <form class="row" asp-controller="Contato" asp-action="Alterar" method="post">
+    <form class="row" asp-controller="Pessoa" asp-action="Alterar" method="post">
         <input type="hidden" asp-for="ID_USUARIO" />
 
         <div class="form-group col-sm-6">
-            <label>Nome*</label>
+            <label>Nome</label>
             <input type="text" asp-for="NM_PESSOA" class="form-control">
             @Html.ValidationMessageFor(x => x.NM_PESSOA)
         </div>
 
         <div class="form-group col-sm-6">
-            <label>Email*</label>
+            <label>Email</label>
             <input type="text" asp-for="DS_EMAIL" class="form-control">
             @Html.ValidationMessageFor(x => x.DS_EMAIL)
         </div>
 
         <div class="form-group col-sm-6">
-            <label>Celular*</label>
-            <input type="text" asp-for="Celular" class="form-control">
-            @Html.ValidationMessageFor(x => x.Celular)
+            <label>Cpf</label>
+            <input type="number" asp-for="NR_CPF_PES" class="form-control">
+            @Html.ValidationMessageFor(x => x.NR_CPF_PES)
         </div>
 
         <div class="form-group col-sm-6">
             <label>Aniversário*</label>
-            <input type="date" asp-for="Aniversario" class="form-control">
+            <input type="date" asp-for="DT_NAS_PESSOA" class="form-control">
         </div>
 
         <div class="form-group col-sm-6">
-            @if (Model.Perfil != PerfilEnum.Dev)
+            @if (Model.TP_USUARIO != TP_USUARIO.Administrador)
             {
                 <label for="nome" class="form-label">Perfil*</label>
-                <select asp-for="Perfil" class="form-control">
+                <select asp-for="TP_USUARIO" class="form-control">
 
-                    @if (@ViewBag.Perfil == app_cadastro.Enums.PerfilEnum.Dev)
+                    @if (@ViewBag.TP_USUARIO == DesafioSenaiCimatec.Enums.TP_USUARIO.Administrador)
                     {
-                        <option value="@PerfilEnum.Dev">Desenvolvedor</option>
+                        <option value="@TP_USUARIO.Administrador">Administrador</option>
                     }
-                    <option value="@PerfilEnum.Padrao">Padrão</option>
-                    <option value="@PerfilEnum.AdminAniversariantes">Administrador Aniversariantes</option>
-                    <option value="@PerfilEnum.AdminCafe">Administrador Vaquinha Café</option>
+                    <option value="@TP_USUARIO.Usuariocadastro">Usuario cadastro</option>
+                    <option value="@TP_USUARIO.Usuarioconsulta">Usuario consulta</option>
 
                 </select>
-                @Html.ValidationMessageFor(x => x.Perfil)
+                @Html.ValidationMessageFor(x => x.TP_USUARIO)
             }
         </div>
 
